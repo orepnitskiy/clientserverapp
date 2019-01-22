@@ -1,5 +1,12 @@
 import asyncio
 
+"""
+It is the server that accepts commands in format:
+put {name} {value} {timestamp}
+get {name} or get {*} if you want to get all metrics from the server.
+You can use it freely! More information about server and how it works you can find in docstrings
+"""
+
 
 def run_server(host:str, port:int):
 	""" 
@@ -7,7 +14,7 @@ def run_server(host:str, port:int):
 	host and port that're transfered to
 	the function 
 	   
-    """
+   	"""
 	loop = asyncio.get_event_loop()
 	coro = loop.create_server(ClientServerProtocol, host, port)
 	server = loop.run_until_complete(coro)
