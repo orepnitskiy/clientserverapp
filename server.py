@@ -43,8 +43,8 @@ class ClientServerProtocol(asyncio.Protocol):
 		data and writing output from the function on the socket
 
 		"""
-		msg=data.decode()
-		processed_data=self._process_data(msg)
+		msg = data.decode()
+		processed_data = self._process_data(msg)
 		self.transport.write(processed_data.encode())
 		
 		
@@ -61,23 +61,23 @@ class ClientServerProtocol(asyncio.Protocol):
 			except IndexError:
 				return'error\nwrong command\n\n'
 			return 'ok\n'
-		elif msg[0:3]=='get':
-			data_output=["ok\n"]
-			data_prepare=msg.strip("\r\n").split(' ')
+		elif msg[0:3] == 'get':
+			data_output = ["ok\n"]
+			data_prepare = msg.strip("\r\n").split(' ')
 			try:
-				key=data_prepare[1]
+				key = data_prepare[1]
 			except IndexError:
 				return 'error\nwrong command\n\n'
 			for i in range(len(self.metrics_list)):
 				for j in range(3):
-					if key=='*':
+					if key == '*':
 						data_output.append(self.metrics_list[i][j])
-						if j==3:
+						if j == 3:
 							data_output.append('\n')
 					else:
-						if key==self.metrics_list[i][0]:
+						if key == self.metrics_list[i][0]:
 							data_output.append(self.metrics_list[i][j])
-							if j==3:
+							if j == 3:
 								data_output.append('\n')
 			data_output.append("\n")
 			return ''.join(data_output)
