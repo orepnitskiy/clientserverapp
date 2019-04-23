@@ -1,1 +1,1 @@
-You can find all documentation in docstrings in files client.py and server.py. In client.py you can find client that send metrics on the server, in the server.py you can find server that accepting metrics
+You can find all documentation in docstrings in script files. App consists of two files. In client.py you can find client that send metrics on the server, in the server.py you can find server that accepting metrics
